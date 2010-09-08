@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+	<package name="struts2" extends="struts-default,json-default" namespace="/">
+
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult">
+			</result-type>
+		</result-types>
+
+		<action name="hello" class="actions.HelloWorldAction" method="execute">
+		  <result name="success">/HelloWorld.jsp</result>
+		</action>
+		<action name="echo" class="actions.EchoAction" method="execute">
+		  <result name="success">/echoMessage.jsp</result>
+		</action>
+		<action name="index" class="actions.IndexAction" method="execute">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="modal" class="actions.ModalAction" method="execute">
+			<result name="success">/modal.jsp</result>
+		</action>
+		<action name="languages" class="actions.AutocompleterAction" method="execute">
+			<result name="success">/languages.jsp</result>		
+		</action>
+		
+		<action name="jsonlanguages"  class="actions.AutocompleterAction">
+			<result type="json" name = "success">
+				<param name="root">languages</param>
+			</result>
+		</action>
+		
+		<!-- "catch all" action -->
+		<action name="*" class="actions.IndexAction">
+			<result name="success">/index.jsp</result>
+        </action>		
+	</package>
+
+</struts>
